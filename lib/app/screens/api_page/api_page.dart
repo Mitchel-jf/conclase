@@ -23,17 +23,19 @@ class _APIPageState extends State<APIPage> with APIPageMixin {
         ),
         body: zones == null
             ? Center(child: Text('Loading...'))
-            : ListView(
-                children: zones
-                    .map<Widget>(
-                      (e) => Card(
-                        child: ListTile(
-                          title: Text(e),
+            : Scrollbar(
+              child: ListView(
+                  children: zones
+                      .map<Widget>(
+                        (e) => Card(
+                          child: ListTile(
+                            title: Text(e),
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
-              )
+                      )
+                      .toList(),
+                ),
+            )
         // body: FutureBuilder<List<String>>(
         //   future: zones,
         //   initialData: ['initial'],
