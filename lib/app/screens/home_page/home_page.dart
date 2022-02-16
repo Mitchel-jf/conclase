@@ -19,7 +19,8 @@ class HomePage extends StatelessWidget {
           children: [
             HomeCard(pageName: Routes.basicsPage, title: 'Basics'),
             HomeCard(pageName: Routes.animationsPage, title: 'Animations'),
-            HomeCard(pageName: Routes.builderPage, title: 'Builders')
+            HomeCard(pageName: Routes.builderPage, title: 'Builders'),
+            HomeCard(pageName: Routes.apiPage, title: 'APIs')
           ],
         ),
       ),

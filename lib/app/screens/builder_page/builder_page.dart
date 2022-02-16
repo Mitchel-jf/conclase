@@ -13,9 +13,7 @@ class BuilderPage extends StatelessWidget with ListItemMixin {
       ),
       body: ListView.builder(
         itemCount: listItems.length,
-        itemBuilder: (_, index) {
-          return Icon(Icons.add);
-        },
+        itemBuilder: (_, index) => ListItemCard(listItem: listItems[index]),
       ),
     );
   }
