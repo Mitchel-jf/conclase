@@ -1,25 +1,21 @@
 import 'dart:convert';
-
-import 'package:conclase/app/screens/api_page/api_page.dart';
-import 'package:flutter/material.dart';
+import 'package:conclase/app/screens/api_page/models/user.dart';
 import 'package:http/http.dart' as http;
 
-mixin APIPageMixin on State<APIPage> {
-  var zones;
+mixin APIPageMixin {
+  final Uri _url = Uri.parse(
+    'https://conclase-server.herokuapp.com/api/create/user', //http://worldtimeapi.org/api/timezone
+  );
 
-  dynamic getTimeZone() async {
-    final String url = 'http://worldtimeapi.org/api/timezone';
-    try {
-      var response = await http.get(Uri.parse(url));
-      return jsonDecode(response.body);
-    } catch (e) {
-      print('An error occurred. $e');
-    }
-  }
+  final Map<String, String> _body = {
+    "firstName": "Ify",
+    "lastName": "Blossom",
+    "email": "Philip@conlase.com",
+  };
 
-  void updateZone(body) {
-    setState(() {
-      zones = body;
-    });
+  Future<User> createUser() async {
+    http.Response response = await http.post(_url, body: _body);
+    if (response.statusCode != 200) throw response.body;
+    return User.fromJSON(json.decode(response.body));
   }
 }
